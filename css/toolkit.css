@@ -1,0 +1,99 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #0066cc;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    margin: 0.5rem 0;
+}
+
+header input {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 80%;
+    max-width: 400px;
+}
+
+nav {
+    background: #003366;
+    padding: 0.5rem 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 1rem;
+    background: white;
+    margin: 1rem auto;
+    max-width: 960px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+main h2 {
+    color: #0066cc;
+    border-bottom: 2px solid #0066cc;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+section div {
+    margin-bottom: 1rem;
+}
+
+.citation {
+    font-size: 0.9rem;
+    margin-left: 20px;
+    text-indent: -20px;
+    line-height: 1.5;
+    color: #555;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background: #003366;
+    color: white;
+}
+
+footer p {
+    margin: 0;
+}
