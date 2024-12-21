@@ -1,25 +1,35 @@
 /* css/style.css */
 
-/* Basic Reset */
+/* ===============================
+   1. Basic Reset
+   =============================== */
+
+/* Remove default margins and paddings */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styling */
+/* ===============================
+   2. Body Styling
+   =============================== */
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-color: #f9f9f9;
     color: #333;
     padding: 20px;
 }
 
-/* Header Styling */
+/* ===============================
+   3. Header Styling
+   =============================== */
+
 header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 header h1 {
@@ -29,17 +39,22 @@ header h1 {
 }
 
 header p {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-    color: #34495e;
+    font-size: 1.1em;
+    color: #555;
 }
 
-/* Navigation Styling */
+/* ===============================
+   4. Navigation Styling
+   =============================== */
+
+nav {
+    margin-top: 20px;
+}
+
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
     flex-wrap: wrap;
 }
 
@@ -52,37 +67,48 @@ nav ul li a {
     color: #2980b9;
     font-weight: bold;
     transition: color 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a:focus {
+    background-color: #ecf0f1;
     color: #1abc9c;
 }
 
-/* Main Content Styling */
-main section {
-    background: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* ===============================
+   5. Main Content Styling
+   =============================== */
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-main h2 {
-    margin-bottom: 15px;
+section {
+    background: #fff;
+    padding: 25px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    margin-bottom: 20px;
     color: #2980b9;
     border-bottom: 2px solid #ecf0f1;
-    padding-bottom: 5px;
+    padding-bottom: 8px;
+    font-size: 1.8em;
 }
 
 .resource {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .citation {
-    text-indent: -0.5em; /* Negative indent for hanging */
-    padding-left: 0.5em; /* Space for hanging indent */
+    font-size: 1em;
     margin-bottom: 10px;
-    font-style: normal; /* APA citations are not italicized, except journal names */
 }
 
 .citation a {
@@ -90,24 +116,43 @@ main h2 {
     text-decoration: none;
 }
 
-.citation a:hover {
+.citation a:hover,
+.citation a:focus {
     text-decoration: underline;
 }
 
 .summary {
-    margin-bottom: 20px;
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
 }
 
-/* Footer Styling */
+/* ===============================
+   6. Footer Styling
+   =============================== */
+
 footer {
     text-align: center;
-    margin-top: 20px;
-    font-size: 0.9em;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
     color: #7f8c8d;
+    font-size: 0.9em;
 }
 
-/* Responsive Design */
+/* ===============================
+   7. Responsive Design
+   =============================== */
+
 @media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -117,7 +162,23 @@ footer {
         margin: 10px 0;
     }
 
-    #search-bar {
-        width: 100%;
+    section h2 {
+        font-size: 1.5em;
+    }
+
+    .citation,
+    .summary {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul li a {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+
+    section {
+        padding: 20px 15px;
     }
 }
