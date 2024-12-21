@@ -1,62 +1,98 @@
-// Load JSON resources and dynamically populate sections
-fetch('resources.json')
-    .then(response => response.json())
-    .then(data => {
-        const categories = {
-            communication: document.getElementById('communication-resources'),
-            cultural: document.getElementById('cultural-resources'),
-            technology: document.getElementById('technology-resources'),
-            training: document.getElementById('training-resources')
-        };
+// js/app.js
 
-        // Populate each category with resources
-        data.resources.forEach(resource => {
-            const resourceElement = document.createElement('div');
-            resourceElement.innerHTML = `
-                <h3><a href="${resource.url}" target="_blank">${resource.title}</a></h3>
-                <p>${resource.summary}</p>
-                <p class="citation">${resource.citation}</p>
-            `;
-
-            // Append to the appropriate category
-            if (categories[resource.category]) {
-                categories[resource.category].appendChild(resourceElement);
+// Function to fetch and display resources
+function loadResources() {
+    fetch('dat/resources.json') // Updated path to resources.json
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
             }
-        });
-    })
-    .catch(error => console.error('Error loading resources:', error));
+            return response.json();
+        })
+        .then(data => {
+            populateSections(data.resources);
+        })
+        .catch(error => console.error('Error loading resources:', error));
+}
 
-// Implement search functionality
-const searchBar = document.getElementById('search-bar');
-searchBar.addEventListener('input', event => {
-    const query = event.target.value.toLowerCase();
+// Function to populate sections with resources
+function populateSections(resources) {
+    const categories = {
+        communication: document.getElementById('communication-resources'),
+        cultural: document.getElementById('cultural-resources'),
+        technology: document.getElementById('technology-resources'),
+        training: document.getElementById('training-resources')
+    };
 
-    // Clear current results
-    Object.values(document.querySelectorAll('section div')).forEach(section => {
+    resources.forEach(resource => {
+        const resourceElement = createResourceElement(resource);
+
+        // Append to the appropriate category
+        if (categories[resource.category]) {
+            categories[resource.category].appendChild(resourceElement);
+        } else {
+            // Handle resources with undefined categories
+            console.warn(`Unknown category '${resource.category}' for resource '${resource.title}'`);
+        }
+    });
+}
+
+// Function to create a resource HTML element
+function createResourceElement(resource) {
+    const div = document.createElement('div');
+    div.classList.add('resource');
+
+    div.innerHTML = `
+        <h3><a href="${resource.url}" target="_blank" rel="noopener noreferrer">${resource.title}</a></h3>
+        <p>${resource.summary}</p>
+        <p class="citation">${resource.citation}</p>
+    `;
+
+    return div;
+}
+
+// Function to handle search functionality
+function setupSearch() {
+    const searchBar = document.getElementById('search-bar');
+
+    searchBar.addEventListener('input', event => {
+        const query = event.target.value.toLowerCase();
+
+        // Clear current results
+        clearSections();
+
+        // Fetch and filter resources based on the search query
+        fetch('dat/resources.json') // Updated path to resources.json
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const filteredResources = data.resources.filter(resource => {
+                    return (
+                        resource.title.toLowerCase().includes(query) ||
+                        resource.summary.toLowerCase().includes(query)
+                    );
+                });
+
+                populateSections(filteredResources);
+            })
+            .catch(error => console.error('Error during search:', error));
+    });
+}
+
+// Function to clear all sections
+function clearSections() {
+    const sections = document.querySelectorAll('main section div');
+    sections.forEach(section => {
         section.innerHTML = '';
     });
+}
 
-    fetch('resources.json')
-        .then(response => response.json())
-        .then(data => {
-            data.resources.forEach(resource => {
-                if (
-                    resource.title.toLowerCase().includes(query) ||
-                    resource.summary.toLowerCase().includes(query)
-                ) {
-                    const resourceElement = document.createElement('div');
-                    resourceElement.innerHTML = `
-                        <h3><a href="${resource.url}" target="_blank">${resource.title}</a></h3>
-                        <p>${resource.summary}</p>
-                        <p class="citation">${resource.citation}</p>
-                    `;
-
-                    // Determine category placement
-                    const category = resource.category || 'general';
-                    const section = document.getElementById(`${category}-resources`);
-                    section.appendChild(resourceElement);
-                }
-            });
-        })
-        .catch(error => console.error('Error during search:', error));
+// Initialize the app
+document.addEventListener('DOMContentLoaded', () => {
+    loadResources();
+    setupSearch();
 });
