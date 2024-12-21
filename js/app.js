@@ -27,13 +27,13 @@ function loadResources() {
 }
 
 // Function to display resources in their respective categories
-function displayResources(resources) {
+function displayResources(resources, query = '') {
     // Clear existing resources
     clearAllSections();
 
     resources.forEach(resource => {
         // Create resource element
-        const resourceElement = createResourceElement(resource);
+        const resourceElement = createResourceElement(resource, query);
 
         // Append to the appropriate category
         if (categories[resource.category]) {
@@ -42,23 +42,40 @@ function displayResources(resources) {
             console.warn(`Unknown category '${resource.category}' for resource titled '${resource.title}'`);
         }
     });
+
+    // If no resources are displayed, show no results message
+    if (resources.length === 0) {
+        displayNoResults();
+    }
 }
 
-// Function to create a resource HTML element
-function createResourceElement(resource) {
+// Function to create a resource HTML element with optional highlighting
+function createResourceElement(resource, query = '') {
     const div = document.createElement('div');
     div.classList.add('resource');
 
+    // Highlight search terms if query is provided
+    const highlightedCitation = query ? highlightMatch(resource.citation, query) : resource.citation;
+
     div.innerHTML = `
-        <h3><a href="${resource.url}" target="_blank" rel="noopener noreferrer">${resource.title}</a></h3>
-        <p><strong>Author:</strong> ${resource.author}</p>
-        <p><strong>Year:</strong> ${resource.year}</p>
-        <p><strong>Journal:</strong> ${resource.journal}</p>
-        <p>${resource.summary}</p>
-        <p class="citation"><strong>Citation:</strong> ${resource.citation}</p>
+        <p class="citation">${highlightedCitation}</p>
+        <p class="summary">${resource.summary}</p>
     `;
 
     return div;
+}
+
+// Function to highlight matched search terms
+function highlightMatch(text, query) {
+    if (!query) return text;
+    const escapedQuery = escapeRegExp(query);
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+}
+
+// Utility function to escape RegExp special characters
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 // Function to clear all sections
@@ -104,11 +121,7 @@ function performSearch(query) {
                 );
             });
 
-            displayResources(filteredResources);
-
-            if (filteredResources.length === 0) {
-                displayNoResults();
-            }
+            displayResources(filteredResources, query);
         })
         .catch(error => {
             console.error('Error during search:', error);
@@ -118,7 +131,6 @@ function performSearch(query) {
 
 // Function to display a "No Results" message
 function displayNoResults() {
-    clearAllSections();
     const main = document.querySelector('main');
     main.innerHTML = `<p class="no-results">No resources found matching your search.</p>`;
 }
