@@ -74,8 +74,12 @@ main h2 {
 }
 
 .citation {
-  font-style: italic;
+  font-style: normal;
   margin-bottom: 10px;
+}
+
+.citation em {
+  font-style: italic;
 }
 
 .citation a {
@@ -89,6 +93,8 @@ main h2 {
 
 .summary {
   margin-top: 10px;
+  text-indent: -15px;
+  padding-left: 15px;
 }
 
 /* Footer Styling */
