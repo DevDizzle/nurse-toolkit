@@ -2,7 +2,7 @@
 
 // Function to fetch and display resources
 function loadResources() {
-    fetch('dat/resources.json') // Updated path to resources.json
+    fetch('data/resources.json') // Updated path to resources.json
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
@@ -62,7 +62,7 @@ function setupSearch() {
         clearSections();
 
         // Fetch and filter resources based on the search query
-        fetch('dat/resources.json') // Updated path to resources.json
+        fetch('data/resources.json') // Updated path to resources.json
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
