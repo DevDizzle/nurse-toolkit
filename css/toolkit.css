@@ -91,10 +91,21 @@ main h2 {
   text-decoration: underline;
 }
 
+/* Updated Summary Class for Hanging Indent */
 .summary {
-  margin-top: 10px;
-  text-indent: -15px;
-  padding-left: 15px;
+  text-indent: -2em; /* Negative indent for the first line */
+  margin-left: 2em;   /* Indent the entire paragraph */
+  line-height: 1.6;   /* Improves readability */
+}
+
+/* Optional: Styling links within summaries */
+.summary a {
+  color: #1a0dab;
+  text-decoration: none;
+}
+
+.summary a:hover {
+  text-decoration: underline;
 }
 
 /* Footer Styling */
