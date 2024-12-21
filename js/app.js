@@ -2,14 +2,17 @@
 
 // Function to fetch and display resources
 function loadResources() {
-    fetch('data/resources.json') // Updated path to resources.json
+    console.log('Loading resources...');
+    fetch('data/resources.json') // Corrected path
         .then(response => {
+            console.log('Fetching resources.json...');
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
             }
             return response.json();
         })
         .then(data => {
+            console.log('Resources loaded:', data.resources);
             populateSections(data.resources);
         })
         .catch(error => console.error('Error loading resources:', error));
@@ -39,6 +42,7 @@ function populateSections(resources) {
 
 // Function to create a resource HTML element
 function createResourceElement(resource) {
+    console.log(`Creating element for: ${resource.title}`);
     const div = document.createElement('div');
     div.classList.add('resource');
 
@@ -54,16 +58,19 @@ function createResourceElement(resource) {
 // Function to handle search functionality
 function setupSearch() {
     const searchBar = document.getElementById('search-bar');
+    console.log('Setting up search functionality...');
 
     searchBar.addEventListener('input', debounce(event => {
         const query = event.target.value.toLowerCase();
+        console.log('Search query:', query);
 
         // Clear current results
         clearSections();
 
         // Fetch and filter resources based on the search query
-        fetch('data/resources.json') // Updated path to resources.json
+        fetch('data/resources.json') // Corrected path
             .then(response => {
+                console.log('Fetching resources.json for search...');
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
@@ -77,7 +84,7 @@ function setupSearch() {
                         resource.citation.toLowerCase().includes(query) // Include citation in search
                     );
                 });
-
+                console.log('Filtered resources:', filteredResources);
                 populateSections(filteredResources);
             })
             .catch(error => console.error('Error during search:', error));
