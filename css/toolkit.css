@@ -1,4 +1,4 @@
-/* css/toolkit.css */
+/* css/style.css */
 
 /* Basic Reset */
 * {
@@ -32,15 +32,6 @@ header p {
     font-size: 1.2em;
     margin-bottom: 15px;
     color: #34495e;
-}
-
-#search-bar {
-    width: 80%;
-    max-width: 400px;
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
 /* Navigation Styling */
@@ -83,54 +74,28 @@ main h2 {
     padding-bottom: 5px;
 }
 
-.resource-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
 .resource {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 5px;
-    background-color: #ecf0f1;
-    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
 }
 
-.resource:hover {
-    background-color: #d0e1f9;
+.citation {
+    text-indent: -0.5em; /* Negative indent for hanging */
+    padding-left: 0.5em; /* Space for hanging indent */
+    margin-bottom: 10px;
+    font-style: normal; /* APA citations are not italicized, except journal names */
 }
 
-.resource h3 {
-    margin-top: 0;
-    font-size: 1.2em;
-}
-
-.resource a {
+.citation a {
     color: #2980b9;
     text-decoration: none;
 }
 
-.resource a:hover {
+.citation a:hover {
     text-decoration: underline;
 }
 
-.citation {
-    font-size: 0.9em;
-    color: #7f8c8d;
-}
-
-/* Highlighted Search Terms */
-mark {
-    background-color: #ffff00;
-    color: #000;
-}
-
-/* Error and No Results Styling */
-.error, .no-results {
-    text-align: center;
-    font-style: italic;
-    color: #777;
+.summary {
+    margin-bottom: 20px;
 }
 
 /* Footer Styling */
@@ -154,9 +119,5 @@ footer {
 
     #search-bar {
         width: 100%;
-    }
-
-    .resource-container {
-        gap: 10px;
     }
 }
