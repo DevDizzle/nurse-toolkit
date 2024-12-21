@@ -91,10 +91,30 @@ main h2 {
   text-decoration: underline;
 }
 
+/* Alternative Hanging Indent for Summary Paragraphs */
 .summary {
-  margin-top: 10px;
-  text-indent: -15px;
-  padding-left: 15px;
+  position: relative;
+  padding-left: 2em; /* Space reserved for the hanging indent */
+  margin-bottom: 10px;
+}
+
+.summary::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2em; /* Width matching the padding-left */
+  height: 100%;
+}
+
+/* Optional: Styling links within summaries */
+.summary a {
+  color: #1a0dab;
+  text-decoration: none;
+}
+
+.summary a:hover {
+  text-decoration: underline;
 }
 
 /* Footer Styling */
