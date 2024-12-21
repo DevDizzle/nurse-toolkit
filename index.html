@@ -5,51 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nurse Toolkit for Patient Safety</title>
     <!-- Link to CSS -->
-    <link rel="stylesheet" href="css/toolkit.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <h1>Nurse Toolkit for Patient Safety</h1>
         <p>Enhancing education and coordination to improve patient outcomes.</p>
-        <input type="text" id="search-bar" placeholder="Search resources..." aria-label="Search Resources">
+        <nav>
+            <ul>
+                <li><a href="#communication">Effective Communication</a></li>
+                <li><a href="#cultural-tools">Culturally Tailored Tools</a></li>
+                <li><a href="#technology">Technology in Education</a></li>
+                <li><a href="#training">Training and Workflow</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <nav aria-label="Main Navigation">
-        <ul>
-            <li><a href="#communication">Effective Communication</a></li>
-            <li><a href="#cultural-tools">Culturally Tailored Tools</a></li>
-            <li><a href="#technology">Technology in Education</a></li>
-            <li><a href="#training">Training and Workflow</a></li>
-        </ul>
-    </nav>
 
     <main>
         <section id="communication">
             <h2>Effective Communication Strategies</h2>
-            <div id="communication-resources" class="resource-container"></div>
+            <div class="resource">
+                <p class="citation">
+                    Sharkiya, S. H. (2023). Quality communication can improve patient-centered health outcomes among older patients: A rapid review. <em>BMC Health Services Research, 23</em>(1), 886. <a href="https://doi.org/10.1186/s12913-023-09869-8" target="_blank" rel="noopener noreferrer">https://doi.org/10.1186/s12913-023-09869-8</a>
+                </p>
+                <p class="summary">
+                    Effective communication strategies, including verbal and non-verbal approaches, significantly improve outcomes for older adults.
+                </p>
+            </div>
+            <!-- Repeat .resource divs for other entries -->
         </section>
 
         <section id="cultural-tools">
             <h2>Culturally and Linguistically Tailored Tools</h2>
-            <div id="cultural-resources" class="resource-container"></div>
+            <div class="resource">
+                <p class="citation">
+                    Singh, H., Fulton, J. IV, Mirzazada, S., Saragosa, M., Uleryk, E. M., & Nelson, M. L. A. (2023). Community-Based Culturally Tailored Education Programs for Black Adults with Chronic Diseases: A Systematic Review. <em>J Racial Ethnic Health Disparities, 10</em>, 2986–3006. <a href="https://doi.org/10.1007/s40615-022-01474-5" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s40615-022-01474-5</a>
+                </p>
+                <p class="summary">
+                    Synthesizes strategies for culturally tailored education programs for chronic diseases.
+                </p>
+            </div>
+            <!-- Repeat .resource divs for other entries -->
         </section>
 
         <section id="technology">
             <h2>Technology and Multimedia in Patient Education</h2>
-            <div id="technology-resources" class="resource-container"></div>
+            <div class="resource">
+                <p class="citation">
+                    Rodriguez, K., Ryan, D., Dickinson, J. K., & Phan, V. (2022). Improving quality outcomes: The value of diabetes care and education specialists. <em>Clinical Diabetes, 40</em>(3), 356–365. <a href="https://doi.org/10.2337/cd21-0089" target="_blank" rel="noopener noreferrer">https://doi.org/10.2337/cd21-0089</a>
+                </p>
+                <p class="summary">
+                    Discusses the role of Diabetes Care and Education Specialists in improving outcomes and reducing costs.
+                </p>
+            </div>
+            <!-- Repeat .resource divs for other entries -->
         </section>
 
         <section id="training">
             <h2>Training and Workflow Integration</h2>
-            <div id="training-resources" class="resource-container"></div>
+            <div class="resource">
+                <p class="citation">
+                    Khatri, R., Endalamaw, A., Erku, D., Wolka, E., Nigatu, F., Zewdie, A., & Assefa, Y. (2023). Continuity and coordination of primary health care: A scoping review. <em>BMC Health Services Research, 23</em>(750). <a href="https://doi.org/10.1186/s12913-023-09718-8" target="_blank" rel="noopener noreferrer">https://doi.org/10.1186/s12913-023-09718-8</a>
+                </p>
+                <p class="summary">
+                    Comprehensive review of care coordination and continuity in primary healthcare systems.
+                </p>
+            </div>
+            <!-- Repeat .resource divs for other entries -->
         </section>
     </main>
 
     <footer>
         <p>&copy; 2024 Nurse Toolkit. All rights reserved.</p>
     </footer>
-
-    <!-- Link to JavaScript -->
-    <script src="js/app.js"></script>
 </body>
 </html>
