@@ -55,7 +55,7 @@ function createResourceElement(resource) {
 function setupSearch() {
     const searchBar = document.getElementById('search-bar');
 
-    searchBar.addEventListener('input', event => {
+    searchBar.addEventListener('input', debounce(event => {
         const query = event.target.value.toLowerCase();
 
         // Clear current results
@@ -73,14 +73,15 @@ function setupSearch() {
                 const filteredResources = data.resources.filter(resource => {
                     return (
                         resource.title.toLowerCase().includes(query) ||
-                        resource.summary.toLowerCase().includes(query)
+                        resource.summary.toLowerCase().includes(query) ||
+                        resource.citation.toLowerCase().includes(query) // Include citation in search
                     );
                 });
 
                 populateSections(filteredResources);
             })
             .catch(error => console.error('Error during search:', error));
-    });
+    }, 300)); // Debounce delay of 300ms
 }
 
 // Function to clear all sections
@@ -89,6 +90,17 @@ function clearSections() {
     sections.forEach(section => {
         section.innerHTML = '';
     });
+}
+
+// Debounce function to limit the rate of function execution
+function debounce(func, delay) {
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
 }
 
 // Initialize the app
